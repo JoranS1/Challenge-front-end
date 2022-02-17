@@ -26,6 +26,7 @@ div{
 	box-shadow: 2px 3px 2px 0px rgba(0,0,0,0.5);*/
 	border: 2px solid blue;
 	font-weight: 400;
+	text-align: center;
 }
 #meaning{
 	color: white;
@@ -57,6 +58,39 @@ div{
 	width: 650px;
 	height: 450px;
 	margin-left: 450px;
+}
+#answer1{
+	color: white;
+	background-color: red;
+	width: 33%;
+	/*margin-top: 50px;
+	-webkit-box-shadow: 2px 3px 2px 0px rgba(0,0,0,0.5); 
+	box-shadow: 2px 3px 2px 0px rgba(0,0,0,0.5);*/
+	border: 2px solid blue;
+	font-weight: 400;
+	text-align: center;
+}
+#answer2{
+	color: white;
+	background-color: red;
+	width: 33%;
+	/*margin-top: 50px;
+	-webkit-box-shadow: 2px 3px 2px 0px rgba(0,0,0,0.5); 
+	box-shadow: 2px 3px 2px 0px rgba(0,0,0,0.5);*/
+	border: 2px solid blue;
+	font-weight: 400;
+}
+
+#answer3{
+	color: white;
+	background-color: red;
+	width: 33%;
+	/*margin-top: 50px;
+	-webkit-box-shadow: 2px 3px 2px 0px rgba(0,0,0,0.5); 
+	box-shadow: 2px 3px 2px 0px rgba(0,0,0,0.5);*/
+	border: 2px solid blue;
+	font-weight: 400;
+	text-align: center;
 }
 footer{
 	width: 100%;

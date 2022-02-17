@@ -1,0 +1,1 @@
+let playersArray = [{img:'images/Burger.jpg', name:'Wouter Burger'}, {img:'images/Katterbach.jpg', name:'Noah Katterbach'}, {img:'images/Lang.jpg', name:'Michael Lang'}]
