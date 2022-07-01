@@ -1,7 +1,19 @@
+let playerNamesArray = [
+    'Wouter Burger',
+    'Noah Katterbach',
+    'Michael Lang',
+    'Heinz Lindner',
+    'Yacouba Nasser Djiga',
+    'Pajtim Kasami',
+    'Joelson Fernandes',
+    'Felix Gebhardt',
+    'Djorde Nikolic',
+    'Liam Millar'
+];
 // global data for the game
-var playerPic = document.getElementById('playerpic');
-var startBtn = document.getElementById('startBtn');
-var timeInput = document.getElementById('timeAmount');
+let playerPic = document.getElementById('playerpic');
+let startBtn = document.getElementById('startBtn');
+let timeInput = document.getElementById('timeAmount');
 var quitBtn = document.getElementById('quitBtn');
 var goodAnswers = document.getElementById('goodAnswers');
 var wrongAnswers = document.getElementById('wrongAnswers');
@@ -27,7 +39,7 @@ startBtn.onclick = function(){
 		}
 
 		randomPlayers = randomPic(playerInput);
-		checkAnswer(randomPlayers[good]);
+		makeGuess(randomPlayers[good]);
 		if(seconds <= 9){
 			timer.innerText = minutes + ":0" + seconds;
 		}
@@ -59,8 +71,8 @@ startBtn.onclick = function(){
 }
 function randomPic(amount){
 	let playersRandomArray = [];
-	for(let i = 0; i<=playersArray.name.length; i++){
-		playersRandomArray.push(playersNameArray[i]);
+	for(let i = 0; i<=playerNamesArray.length; i++){
+		playersRandomArray.push(playerNamesArray[i]);
 	}
 	var playerArray = [];
 	while(playerArray.length <= amount-1){
@@ -74,7 +86,7 @@ function randomPic(amount){
 }
 
 for(let i = 0; i <= 2; i++){
-	document.getElementById("answerBtn" + i).onclick = function(){
+	document.getElementById("answerBtn " + i).onclick = function(){
 		if(document.getElementById("answerBtn" + i).innerText === randomPlayers[good]){
 			good++;
 			goodAnswers.innerText = good;
@@ -100,8 +112,8 @@ function makeGuess(checking){
 
 	while(buttonNames <= 2){
 		let name = Math.floor(Math.random() * 10);
-		if(buttonNames.indexOf(playersArray.name) === -1){
-			buttonNames.push(playersArray.name);
+		if(buttonNames.indexOf(playerNamesArray[name]) === -1){
+			buttonNames.push(playerNamesArray[name]);
 		}
 	}
 	while(buttonPlacement.length <= 2){
