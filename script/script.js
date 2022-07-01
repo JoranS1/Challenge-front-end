@@ -43,6 +43,8 @@ var startBtn = document.getElementById('startBtn');
 var answer1 = document.getElementById('answer1');
 var answer2 = document.getElementById('answer2');
 var answer3 = document.getElementById('answer3');
+var timer1 = document.getElementById('minutes');
+var timer2 = documeent.getElementById('seconds');
 
 
 
@@ -55,13 +57,15 @@ while(playersArray.length !== 0){
 	randomizedArray.push(playersArray[randomizedIndex]);
 	playersArray.splice(randomizedArray, 1);
 }
-function randomPic(){
+function randomPic(amount){
 	let playersRandomArray = [];
 	for(let i = 0; i<=playersArray.length; i++){
 		playersRandomArray.push(playersArray[i]);
 	}
 	var playerArray = [];
-	while(playerArray.length <= )
+	while(playerArray.length <= amount-1){
+		let randomNumber = Math.floor(Math.random() * 9);
+	}
 }
 
 function checkAnswer(checking){
