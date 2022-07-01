@@ -11,12 +11,12 @@ let playerNamesArray = [
     'Liam Millar'
 ];
 // global data for the game
-let playerPic = document.getElementById('playerpic');
-let startBtn = document.getElementById('startBtn');
-let timeInput = document.getElementById('timeAmount');
-var quitBtn = document.getElementById('quitBtn');
-var goodAnswers = document.getElementById('goodAnswers');
-var wrongAnswers = document.getElementById('wrongAnswers');
+let playerPic = document.querySelector('#playerPic');
+let startBtn = document.querySelector('#startBtn');
+let timer = document.querySelector('#time');
+var quitBtn = document.querySelector('#quitBtn');
+var goodAnswers = document.querySelector('#goodAnswers');
+var wrongAnswers = document.querySelector('wrongAnswers');
 
 var good = 0;
 var wrong = 0;
@@ -25,8 +25,8 @@ let minutes = 0;
 let seconds = 0;
 //starts the game with all the functions
 startBtn.onclick = function(){
-	var playerInput = document.getElementById('playerAmount').value;
-	var timeInput = document.getElementById('timeAmount').value;
+	var playerInput = document.querySelector('#playerAmount').value;
+	var timeInput = document.querySelector('#timeAmount').value;
 	times = timeInput.split(':');
 	if(isNaN(times[0]) === null || isNaN(playerInput) === true || playerInput <= 0 || playerInput >= 11 || times[0] <= 0 || times[0] >= 20 || times[1] >= 60|| times.length >= 3){
 		alert('ERROR: You did not meet the requirements please fix it and try agian');
@@ -86,8 +86,8 @@ function randomPic(amount){
 }
 
 for(let i = 0; i <= 2; i++){
-	document.getElementById("answerBtn " + i).onclick = function(){
-		if(document.getElementById("answerBtn" + i).innerText === randomPlayers[good]){
+	document.querySelector("#answerBtn " + i).onclick = function(){
+		if(document.querySelector("#answerBtn" + i).innerText === randomPlayers[good]){
 			good++;
 			goodAnswers.innerText = good;
 			if(randomPlayers.length != good){
