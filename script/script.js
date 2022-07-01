@@ -1,49 +1,8 @@
-//playerdata
-let playersNameArray = [{
-	img:'images\players\Burger.jpg', 
-	name:'Wouter Burger'
-}, {
-	img:'images\players\Katterbach.jpg', 
-	name:'Noah Katterbach',
-}, 
-{
-	img:'images\players\Lang.jpg', 
-	name:'Michael Lang',
-}, 
-{
-	img:'images\players\Lidner.jpg', 
-	name:'Heinz Lindner',
-}, 
-{
-	img:'images\players\Djiga.jpg', 
-	name:'Yacouba Nasser Djiga'
-}, 
-{
-	img: 'images\players\Kasami.jpg', 
-	name:'Pajtim Kasami'
-}, 
-{
-	img:'images\players\Fernandes.jpg', 
-	name:'Joelson Fernandes'
-}, 
-{
-	img:'images\players\gebhardt.jpg',
-	name:'Felix Gebhardt'
-}, 
-{
-	img:'images\players\nikolic.jpg', 
-	name:'Djorde Nikolic'
-}, 
-{
-	img:'images\players\Millar.jpg', 
-	name:'Liam Millar'
-}];
 // global data for the game
 var playerPic = document.getElementById('playerpic');
 var startBtn = document.getElementById('startBtn');
 var timeInput = document.getElementById('timeAmount');
-
-var quit = document.getElementById('quitBtn');
+var quitBtn = document.getElementById('quitBtn');
 var goodAnswers = document.getElementById('goodAnswers');
 var wrongAnswers = document.getElementById('wrongAnswers');
 
@@ -100,12 +59,12 @@ startBtn.onclick = function(){
 }
 function randomPic(amount){
 	let playersRandomArray = [];
-	for(let i = 0; i<=playersArray.length; i++){
-		playersRandomArray.push(playersArray[i]);
+	for(let i = 0; i<=playersArray.name.length; i++){
+		playersRandomArray.push(playersNameArray[i]);
 	}
 	var playerArray = [];
 	while(playerArray.length <= amount-1){
-		let randomNumber = Math.floor(Math.random() * 9);
+		let randomNumber = Math.floor(Math.random() * 10);
 		if(playersRandomArray[randomNumber] != null){
 			playerArray.push(playersRandomArray[randomNumber]);
 			playerArray[randomNumber] = null;
@@ -115,8 +74,8 @@ function randomPic(amount){
 }
 
 for(let i = 0; i <= 2; i++){
-	document.getElementById('answerBtn' + i).onclick = function(){
-		if(document.getElementById('answerBtn' + i).innerText === randomPlayers[good]){
+	document.getElementById("answerBtn" + i).onclick = function(){
+		if(document.getElementById("answerBtn" + i).innerText === randomPlayers[good]){
 			good++;
 			goodAnswers.innerText = good;
 			if(randomPlayers.length != good){
@@ -135,25 +94,47 @@ for(let i = 0; i <= 2; i++){
 }
 
 function makeGuess(checking){
-	playerPic.src = playersArray.img;
-	buttonNames = playersArray.name;
+	playerPic.src = "images/players" + checking + ".jpg";
+	buttonNames = [checking];
 	buttonPlacement = [];
 
 	while(buttonNames <= 2){
-
+		let name = Math.floor(Math.random() * 10);
+		if(buttonNames.indexOf(playersArray.name) === -1){
+			buttonNames.push(playersArray.name);
+		}
 	}
-
+	while(buttonPlacement.length <= 2){
+		let namePlace = Math.floor(Math.random() * 3);
+		if(buttonPlacement.indexOf(namePlace) === -1){
+			buttonPlacement.push(namePlace);
+		}
+	}
+	for(let i = 0; i<=buttonPlacement.length-1; i++){
+		document.getElementById('answerBtn' + buttonPlacement[i]).innerText = buttonNames[i];
+	}
+	quitBtn.onclick = function(){
+		var quitConfirm = confirm("Are you sure you want to quit?");
+		if(quitConfirm === true){
+			quitGame()
+		}
+	}
 	
 	
 }
 
-function quit(){
-
+function quitGame(){
+	clearInterval(timer);
+	minutes = 0;
+	seconds = 0;
+	good = 0;
+	goodAnswers.innerText = good;
+	wrong = 0;
+	wrongAnswers.innerText = wrong;
+	randomPlayers = []; 
 }
 
 
 
-quit.onclick = function(){
-	
-}
+
 
