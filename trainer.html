@@ -16,17 +16,19 @@
 		<p class="w3-center w3-padding-32">The official FC Basel face reconising game</p>
 	</header>
 	<div class="timelineContainer"><div id="timeline" style="display: none"></div></div>
-	<p id="minutes"></p>
-	<p id="seconds"></p>
-	<button id="quitBtn" class="w3-button w3-margin-left-64 w3-red">Quit</button>
+	<div>Time left:<span id="time"></span></div>
+	
+	<p id="goodAnswers" class="w3-margin-left-60"></p>
+	<p id="wrongAnswers" class="w3-margin-left-65"></p>
 	<div class="w3-container">
 	<img src="images/placeholder.png" id="playerpic">
 </div>
 <div class="w3-row-padding ">
-	<div class="w3-padding-16 w3-medium w3-col s4 w3-panel w3-card-4" id="answer1"><p>Answer 1</p></div>
-		<div class="w3-padding-16 w3-medium w3-center w3-col s4 w3-panel w3-card-4" id="answer2"><p>Answer 2</p></div>
-		<div class="w3-padding-16 w3-medium w3-col s4 w3-panel w3-card-4" id="answer3"><p>Answer 3</p></div>
+	<div class="w3-padding-16 w3-medium w3-col s4 w3-panel w3-card-4" id="answer1"><button class="w3-button w3-red" id="answerBtn">Answer 1</button></div>
+		<div class="w3-padding-16 w3-medium w3-center w3-col s4 w3-panel w3-card-4" id="answer2"><button class="w3-button w3-red" id="answerBtn">Answer 2</button></div>
+		<div class="w3-padding-16 w3-medium w3-col s4 w3-panel w3-card-4" id="answer3"><button class="w3-button w3-red" id="answerBtn">Answer 3</button></div>
 		</div>
+		<button id="quitBtn" class="w3-button w3-margin-left-64 w3-red">Quit</button>
 	<script type="text/javascript" src="script/script.js"></script>
 </body>
 </body>
