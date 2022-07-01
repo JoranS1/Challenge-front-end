@@ -45,6 +45,7 @@ var answer2 = document.getElementById('answer2');
 var answer3 = document.getElementById('answer3');
 
 
+
 //randomizes the players
 
 let randomizedArray = [];
@@ -55,7 +56,12 @@ while(playersArray.length !== 0){
 	playersArray.splice(randomizedArray, 1);
 }
 function randomPic(){
-	var randomImg = Math.floor(Math.random() * img)
+	let playersRandomArray = [];
+	for(let i = 0; i<=playersArray.length; i++){
+		playersRandomArray.push(playersArray[i]);
+	}
+	var playerArray = [];
+	while(playerArray.length <= )
 }
 
 function checkAnswer(checking){
@@ -78,6 +84,7 @@ function startGame() {
 	timer = setInterval(startTimer, 600);
 	document.getElementById('timeline').style.display = "inline-block";
 	document.getElementById('timeText').innerHTML = "";
+
 }
 
 startBtn.onclick
