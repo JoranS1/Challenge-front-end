@@ -1,22 +1,22 @@
 let playerNamesArray = [
-    'Wouter Burger',
-    'Noah Katterbach',
-    'Michael Lang',
-    'Heinz Lindner',
-    'Yacouba Nasser Djiga',
-    'Pajtim Kasami',
-    'Joelson Fernandes',
-    'Felix Gebhardt',
-    'Djorde Nikolic',
-    'Liam Millar'
+    'Burger',
+    'Katterbach',
+    'Lang',
+    'Lindner',
+    'Djiga',
+    'Kasami',
+    'Fernandes',
+    'Gebhardt',
+    'Nikolic',
+    'Millar'
 ];
 // global data for the game
-let playerPic = document.querySelector('#playerPic');
-let startBtn = document.querySelector('#startBtn');
-let timer = document.querySelector('#time');
-var quitBtn = document.querySelector('#quitBtn');
-var goodAnswers = document.querySelector('#goodAnswers');
-var wrongAnswers = document.querySelector('wrongAnswers');
+let playerPic = document.getElementById('playerPic');
+let startBtn = document.getElementById('startBtn');
+let timer = document.getElementById('time');
+var quitBtn = document.getElementById('quitBtn');
+var goodAnswers = document.getElementById('goodAnswers');
+var wrongAnswers = document.getElementById('wrongAnswers');
 
 var good = 0;
 var wrong = 0;
@@ -25,8 +25,8 @@ let minutes = 0;
 let seconds = 0;
 //starts the game with all the functions
 startBtn.onclick = function(){
-	var playerInput = document.querySelector('#playerAmount').value;
-	var timeInput = document.querySelector('#timeAmount').value;
+	var playerInput = document.getElementById('playerAmount').value;
+	var timeInput = document.getElementById('timeAmount').value;
 	times = timeInput.split(':');
 	if(isNaN(times[0]) === null || isNaN(playerInput) === true || playerInput <= 0 || playerInput >= 11 || times[0] <= 0 || times[0] >= 20 || times[1] >= 60|| times.length >= 3){
 		alert('ERROR: You did not meet the requirements please fix it and try agian');
@@ -38,8 +38,9 @@ startBtn.onclick = function(){
 			seconds = second;
 		}
 
-		randomPlayers = randomPic(playerInput);
-		makeGuess(randomPlayers[good]);
+		let randomPlayer = randomPic(playerInput);
+		makeGuess(randomPlayer[good]);
+		randomPlayers = randomPlayer;
 		if(seconds <= 9){
 			timer.innerText = minutes + ":0" + seconds;
 		}
@@ -86,8 +87,8 @@ function randomPic(amount){
 }
 
 for(let i = 0; i <= 2; i++){
-	document.querySelector("#answerBtn " + i).onclick = function(){
-		if(document.querySelector("#answerBtn" + i).innerText === randomPlayers[good]){
+	document.getElementById("answerBtn" + i).onclick = function(){
+		if(document.getElementById("answerBtn" + i).innerText === randomPlayers[good]){
 			good++;
 			goodAnswers.innerText = good;
 			if(randomPlayers.length != good){
