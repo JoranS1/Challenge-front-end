@@ -15,6 +15,15 @@
 		<img src="images/logo-fc-basel.png" alt="logo of FC Basel" id="logo">
 		<p class="w3-center w3-padding-32">The official FC Basel face reconising game</p>
 	</header>
+	<div class="w3-center">
+	<form target="_blank" action="trainer.html" method="GET" id="showBefore">
+		<label for="playerAmount">How many players do you want to guess? Max 10</label>
+		<input type="text" maxlength="2" id="playerAmount" required>
+		<label for="timeAmount">And how many time do you want? Maxium amount of time is 20 minutes</label>
+		<input type="text" maxlength="5" placeholder="mm:ss" id="timeAmount" required>
+		</form>
+		</div>
+	<div id="displayNone"></div>
 	<div class="timelineContainer"><div id="timeline" style="display: none"></div></div>
 	<div>Time left:<span id="time">00:00</span></div>
 	<button id="startBtn" style="display: none;"></button>
