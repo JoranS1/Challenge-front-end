@@ -1,22 +1,15 @@
-let playerNamesArray = [{
-    name: 'Burger',
- 	img: 'images/players/Burger.jpg'},
-    {name: 'Katterbach',
-	img: 'images/players/Katterbach.jpg'},
-    {name: 'Lang',
-	img: 'images/players/Lang.jpg'},
-    {name: 'Lindner',
-	img: 'images/players/Linder.jpg'},
-    {name: 'Djiga',
-	img: 'images/players/Djiga.jpg'},
-    {name: 'Kasami',
-	img: 'images/players/Kasamijpg'},
-    {name: 'Fernandes',
-	img: 'images/players/Fernandes.jpg'},
-    {name: 'Gebhardt',
-	img: 'images/players/Gebhardt.jpg'},
-    {name: 'Nikolic',
-	img: 'images/players/Nikolic.jpg'},
-    {name: 'Millar',
-    img: 'images/players/Millar.jpg'}
+"use strict";
+
+let playerNamesArray = [
+    'Burger',
+    'Katterbach',
+     'Lang',
+    'Lindner',
+    'Djiga',
+    'Kasami',
+    'Fernandes',
+    'Gebhardt',
+    'Nikolic',
+    'Millar',
+
 ];
