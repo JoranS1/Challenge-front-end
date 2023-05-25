@@ -1,7 +1,10 @@
 "use strict";
 
-const app = document.querySelector('#gameDisplay');
-const Cookies = new Cookies();
+let app = document.querySelector('#app');
+const Cookie = new Cookies();
+
+const scoreSave = 10;
+const cookieTime = 450;
 
 let goodAnswers;
 let wrongAnswers;
@@ -19,7 +22,7 @@ const header = `
 const head = `
 ${header}
 <div class="w3-container">
-	<div class="innerCnter">
+	<div class="w3-margin">
 		<button onclick="showAllPlayers();" class="w3-button w3-red">All players</button>
 		<button onclick="startGame();" class="w3-button w3-blue">Start Quiz</button>
 	</div>
@@ -27,10 +30,11 @@ ${header}
 </div>
 `;
 
-app.innerHTML = home;
+
+app.innerHTML = head;
 
 function homeScreen(){
-	app.innerHTML = home;
+	document.location.href = "/";
 }
 
 function showAllPlayers(){
