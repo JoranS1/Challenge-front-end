@@ -26,7 +26,7 @@ class Cookies{
      * @param {string} name - name of the cookie
      * @returns
      */
-    cookieExists(name){
+    exists(name){
         return document.cookie.includes(name);
     }
     /**
@@ -34,14 +34,14 @@ class Cookies{
      * @param {string} name - name of the cookie for the value reading
      * @returns
      */
-    cookieValue(name){
+    value(name){
         return (name = (document.cookie + ';').match(new RegExp(name + '=.*;'))) && name[0].split(/=|;/)[1];
     }
     /**
      * function that deletes the cookie 
      * @param {string} name - name of the cookie that needs to be deleted
      */
-    deleteCookie(name){
+    delete(name){
         document.cookie = `${name}=null;expires=1;path=/;SameSite=Strict`;
     }
 }

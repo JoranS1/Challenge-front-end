@@ -1,4 +1,4 @@
-const themes = [
+const Themes = [
     "red",
     "blue",
     "white",

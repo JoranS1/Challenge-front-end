@@ -1,6 +1,6 @@
 "use strict";
 
-let app = document.querySelector('#app');
+const app = document.querySelector('#app');
 const Cookie = new Cookies();
 
 const scoreSave = 10;
@@ -8,6 +8,65 @@ const cookieTime = 450;
 
 let goodAnswers;
 let wrongAnswers;
+
+
+const scoreBoard = [];
+
+const intialiseScoreboard = () => {
+	if(Cookie.exists("scoreboard")){
+		let scoreboard = Cookie.value("scoreboard").split("},");
+		scoreboard.forEach((item) => {
+			if(item !== ""){
+				item += "}";
+				console.log(item);
+				let itemTest = JSON.parse(item);
+				scoreBoard.push(itemTest);
+			}
+		})
+	}
+}
+
+intialiseScoreboard();
+
+const addScoreToBoard = ( goodAnswer, wrongAnswer, maxSeconds, SecondsLeft, totalPlayers ) => {
+	if(scoreBoard.length === scoreSave) scoreBoard.remove(scoreSave-1);
+
+	scoreBoard.push(
+		{
+			"index": scoreBoard.length + 1,
+			"goodAnswer": goodAnswer,
+			"wrongAnswer": wrongAnswer,
+			"maxSeconds": maxSeconds,
+			"secondsLeft": SecondsLeft,
+			"totalPlayers": totalPlayers,
+			"date": new Date(Date.now())
+		}
+	);
+}
+
+const saveBoard = () => {
+	let item = "";
+
+	scoreBoard.forEach((score) => {
+		item += JSON.stringify(score);
+		item += ",";
+	});
+
+	Cookie.create("scoreboard", item, cookieTime, "Strict");
+}
+
+const genSortedBoard = (sortBy) => {
+	switch(sortBy){
+		case "newest":
+			app.innerHTML = head;
+			app.innerHTML += genSortedBoard(sortBy);
+
+			break;
+
+			default:
+				homeScreen();
+	}
+}
 
 const header = `
 <div class="w3-container">
@@ -45,16 +104,37 @@ const showAllThemes = () => {
 		<button onclick="themePicker('black')>black</button>
 
 	`;
+	app.innerHTML = item;
 }
 
-function showAllPlayers(){
-	
-}
-const themePicker = (color) => {
+const showAllPlayers = () => {
+	app.innerHTML = header;
 
 }
+
+const layoutTheme = ( color ) => {
+	if(Theme.includes(color.toLowerCase())){
+		Cookie.create("Theme", color, cookieTime, "Strict");
+		window.location.href = "/";
+	}
+}
+
+const themePicker = ( color ) => {
+	if(Theme.includes(color.toLowerCase())){
+		Cookie.create("Theme", color, cookieTime, "Strict");
+		window.location.href = "/";
+	}
+}
+
 var playerCount = 0;
 var seconds = 0;
 function startGame(){
-	
+	app.innerHTML = header;
+
+	app.innerHTML += `
+	<div class="game">
+		Player you want to guess: <input type="number">
+	`
 }
+
+app.innerHTML = head;
