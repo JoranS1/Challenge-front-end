@@ -68,6 +68,41 @@ const genSortedBoard = (sortBy) => {
 	}
 }
 
+const genLastGameBoard = ( sortBy = null ) => {
+	let items = `
+	<div class="scoreboard">
+	<div class = "sortControl">
+	<h4>Sort by</h4>
+	<button onclick="genSortedBoard('oldest')" class="w3-button w3-black">Oldest</button> 
+	<button onclick="genSortedBoard('newest')" class="w3-button w3-pink">newest</button> 
+	</div>
+	<h3>Scoreboard</h3>
+	`;
+
+	let dates = scoreBoard;
+	if(sortBy === "newest"){
+		dates.sort((a, b) => a.date - b.date);
+
+		dates.reverse();
+	}
+	dates.forEach(( item ) => {
+		items+=`<div class="item">
+		<p>Game: ${item.index}</p>
+		<p>Amount of players left to guess: ${item.totalPlayers}</p>
+		<p>Good Answers: ${item.goodAnswer}</p>
+		<p>Wrong Answers: ${item.wrongAnswer}</p>
+		<p>Maximum Time: ${item.maxSeconds}</p>
+		<p>Seconds Left: ${item.SecondsLeft}</p>
+		<p>Date of today: ${item.date}</p>
+		</div>
+		`
+	});
+
+	items+="</div>";
+
+	return items;
+}
+
 const header = `
 <div class="w3-container">
 <img src="images/logo-fc-basel.png" id=logo>

@@ -1,6 +1,6 @@
 "use strict";
 
-let playerNamesArray = [
+let players = [
     'Burger',
     'Katterbach',
      'Lang',
