@@ -28,7 +28,7 @@ const intialiseScoreboard = () => {
 
 intialiseScoreboard();
 
-const addScoreToBoard = ( goodAnswer, wrongAnswer, maxSeconds, SecondsLeft, totalPlayers ) => {
+const addScoreToBoard = ( goodAnswer, wrongAnswer, MaxSeconds, SecondsLeft, totalPlayers ) => {
 	if(scoreBoard.length === scoreSave) scoreBoard.remove(scoreSave-1);
 
 	scoreBoard.push(
@@ -36,7 +36,7 @@ const addScoreToBoard = ( goodAnswer, wrongAnswer, maxSeconds, SecondsLeft, tota
 			"index": scoreBoard.length + 1,
 			"goodAnswer": goodAnswer,
 			"wrongAnswer": wrongAnswer,
-			"maxSeconds": maxSeconds,
+			"MaxSeconds": MaxSeconds,
 			"secondsLeft": SecondsLeft,
 			"totalPlayers": totalPlayers,
 			"date": new Date(Date.now())
@@ -91,7 +91,7 @@ const genLastGameBoard = ( sortBy = null ) => {
 		<p>Amount of players left to guess: ${item.totalPlayers}</p>
 		<p>Good Answers: ${item.goodAnswer}</p>
 		<p>Wrong Answers: ${item.wrongAnswer}</p>
-		<p>Maximum Time: ${item.maxSeconds}</p>
+		<p>Maximum Time: ${item.MaxSeconds}</p>
 		<p>Seconds Left: ${item.SecondsLeft}</p>
 		<p>Date of today: ${item.date}</p>
 		</div>
@@ -126,7 +126,7 @@ ${header}
 `;
 
 function homeScreen(){
-	document.location.href = "/";
+	document.location.href = "./index.html";
 }
 const showAllThemes = () => {
 	let item = `
@@ -145,6 +145,13 @@ const showAllThemes = () => {
 const showAllPlayers = () => {
 	app.innerHTML = header;
 
+	let item = "";
+	playerArray.forEach((player, number) => {
+		item += `<li>${number + 1}: ${player} <img src="./images/players/${player}.jpg" alt="image for ${player}"></li>`
+	});
+
+	app.innerHTML += `<ul class="list--all-players">${item}</ul>`
+
 }
 
 const layoutTheme = ( color ) => {
@@ -162,14 +169,153 @@ const themePicker = ( color ) => {
 }
 
 var playerCount = 0;
-var seconds = 0;
+var SecondsMax = 0;
 function startGame(){
 	app.innerHTML = header;
 
 	app.innerHTML += `
 	<div class="game">
-		Player you want to guess: <input type="number">
+		Player you want to guess: <input type="number" id="playerAmount" value="${playerCount}" max="${playerArray.length}" min="0"></input>
+		<br>
+		Time in seconds: <input type="number" min="0" max=${SecondsMax} id="playerSeconds"></input>
+		<br>
+		<button onclick="randomPlayer();">Start</button>
+		</div>
 	`
 }
 
+const randomPlayer = () => {
+	let playerAmount = document.querySelector("input#playerAmount").value;
+	let playerSeconds = document.querySelector("input#playerSeconds").value;
+
+	SecondsMax = playerSeconds;
+	playerCount = playerAmount;
+	if(playerAmount != 0){
+		gameFun();
+	}
+	else{
+		alert("You can't guess 0 players")
+	}
+}
+
+const genPlayerName = () => {
+	let number = Math.floor(Math.random() * playerArray.length);
+	return playerArray[number];
+}
+
+var curPlayerAmount;
+var currentPlayer;
+var remainingPlayer;
+
+const valueCheck = (namePlayer) => {
+	if(remainingPlayer != 0){
+		let checkbox = document.querySelector(`#` + namePlayer);
+		if(checkbox !== null && checkbox !== undefined){
+			if(checkbox.checked){
+				goodAnswers++;
+				let correctAnw = document.getElementsByClassName(namePlayer);
+				correctAnw[0].remove();
+				correctAnw[0].remove();
+				console.log(remainingPlayer);
+				remainingPlayer--;
+			}
+			else{
+				wrongAnswers++;
+				let item = document.querySelectorAll('input[type=checkbox]');
+				for(let i = 0; i < item.length; i++){
+					item[i].checked = false;
+				}
+			}
+		}
+	}
+	else{
+		goodAnswers++;
+		finishedGame(interval, seconds)
+	}
+}
+
+var interval;
+var seconds = 0;
+
+const gameFun = () => {
+	seconds = parseInt(SecondsMax);
+	let playerArr = [];
+
+	for(let i = 0; i < parseInt(playerCount); i++){
+		let playerName = genPlayerName();
+		if(!playerArr.includes(playerName)) playerArr.push(playerName);
+	}
+
+	remainingPlayer = parseInt(playerCount) - 1;
+
+	let names = "<div class='namesHolder'>";
+	let images = "<div class='imageHolder'>";
+
+	playerArr.forEach((val) => {
+		images += `<div class="${val}">
+		<img src="./images/players/${val}.jpg" onclick="valueCheck('${val}')"> 
+		</div>
+		`
+	})
+
+	playerArr.sort().forEach((val) => {
+		names += `<div class="${val}">
+		<input class="hidden" id="${val}" type="checkbox"></input>
+		<label for="${val}">${val}</label>
+		</div>
+		`
+	});
+	names+="</div>";
+	images+="</div>";
+
+	app.innerHTML = `<div class="timer" style = "--max-time: ${SecondsMax}; --current-time-left:${SecondsMax};"><span>${SecondsMax}</span></div>`
+
+	app.innerHTML += `<div class="topContainer">
+	${names}
+	${images}
+	</div>
+	`;
+
+	if(curPlayerAmount === undefined){
+		curPlayerAmount = 0;
+		wrongAnswers = 0;
+		goodAnswers = 0;
+	}
+
+	interval = setInterval(() => {
+			if(document.querySelector(".timer") !== undefined || document.querySelector(".timer") !== null){
+				let timer = document.querySelector(".timer");
+				timer.innerHTML = `<span>${seconds}</span>`;
+
+				timer.style.setProperty("--current-time-left", seconds);
+			}
+
+			if(seconds === 0 ){
+				finishedGame(interval, seconds);
+				alert("time is up!");
+			}
+			seconds--;
+	}, 1000);
+}
+
+const finishedGame = ( interval, secondsLeft) => {
+	clearInterval(interval);
+	app.innerHTML = header;
+	app.innerHTML += `
+	<ul>
+		<li>Amount of questions: ${playerCount}</li>
+		<li>Starting seconds: ${SecondsMax}</li>
+		<li>Remaining seconds: ${secondsLeft}</li>
+		<li>Questions answered right: ${goodAnswers}</li>
+		<li>Questions answered wrong: ${wrongAnswers}</li>
+	</ul>
+	`;
+
+	addScoreToBoard(goodAnswers, wrongAnswers, SecondsMax, secondsLeft, playerCount);
+	console.log(genLastGameBoard());
+	goodAnswers = 0;
+	wrongAnswers = 0;
+}
+
 app.innerHTML = head;
+app.innerHTML += genLastGameBoard();

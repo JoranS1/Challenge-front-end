@@ -42,6 +42,6 @@ class Cookies{
      * @param {string} name - name of the cookie that needs to be deleted
      */
     delete(name){
-        document.cookie = `${name}=null;expires=1;path=/;SameSite=Strict`;
+        document.cookie = `${name}=;expires=Thu, 01 Jan 1970  00:00:00 GMT;path=/;SameSite=Strict`;
     }
 }
