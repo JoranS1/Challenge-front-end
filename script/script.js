@@ -9,6 +9,30 @@ const cookieTime = 450;
 let goodAnswers;
 let wrongAnswers;
 
+const startUpTheme = () => {
+	if(Cookie.exists("Theme")){
+		const ThemeVal = Cookie.value("Themes");
+		if(Theme.includes(ThemeVal)){
+			document.querySelector("html").classList.add(ThemeVal);
+		}
+	}
+}
+
+const startLayout = () =>{
+	if(!Cookie.exists("layout")) layoutName("horizontal");
+
+	const layoutVal = Cookie.value("layout");
+	const layoutChoices = ["horizontal", "vertical"];
+
+	if(!layoutChoices.includes(layoutVal)) layoutName("horizontal");
+
+	document.querySelector("html").classList.add(layoutVal);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+	startUpTheme();
+	startLayout();
+})
 
 const scoreBoard = [];
 
@@ -133,11 +157,14 @@ const showAllThemes = () => {
 	${header}
 	<div class="w3-container">
 		<h3>Color themes choose 1 you like!</h3>
-		<button onclick="themePicker('red')>Red</button> 
-		<button onclick="themePicker('blue')>blue</button>
-		<button onclick="themePicker('white')>white</button>
-		<button onclick="themePicker('black')>black</button>
-
+		<input type="radio" id="white" name="colors" value="white" checked>
+		<input type="radio" id="dark" name="colors" value="dark">
+		<br>
+		
+		<h3>Layout themes</h3>
+		<button onclick=layoutName("horizontal")>Horizontal</button>
+		<button onclick=layoutName("vertical")>Vertical</button>
+		</div>
 	`;
 	app.innerHTML = item;
 }
@@ -154,16 +181,22 @@ const showAllPlayers = () => {
 
 }
 
-const layoutTheme = ( color ) => {
-	if(Theme.includes(color.toLowerCase())){
-		Cookie.create("Theme", color, cookieTime, "Strict");
+const layoutTheme = ( Color ) => {
+	if(Theme.includes(Color.toLowerCase())){
+		Cookie.create("layout", Color, cookieTime, "Strict");
 		window.location.href = "/";
 	}
 }
 
-const themePicker = ( color ) => {
-	if(Theme.includes(color.toLowerCase())){
-		Cookie.create("Theme", color, cookieTime, "Strict");
+const layoutName = ( Layout ) => {
+	if(Layout === "horizontal" || Layout === "vertical"){
+		Cookie.create("Theme", Layout, cookieTime, "Strict");
+		window.location.href = "/";
+	}
+}
+const themePicker = ( Color ) => {
+	if(Theme.includes(Color.toLowerCase())){
+		Cookie.create("Theme", Color, cookieTime, "Strict");
 		window.location.href = "/";
 	}
 }

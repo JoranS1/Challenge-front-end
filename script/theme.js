@@ -1,6 +1,4 @@
-const Themes = [
-    "red",
-    "blue",
+const Theme = [
     "white",
-    "black"
+    "dark"
 ];

@@ -2,6 +2,42 @@
 	margin: 0;
 	padding: 0;
 	font-family: 'Montserrat', sans-serif;
+	box-sizing: border-box;
+}
+:root{
+	  /*WHITE*/
+
+	  --white-bg-color: #fff;
+
+	  --white-text-color: #000;
+	
+	  /*DARK*/
+	
+	  --dark-bg-color: #434343;
+	
+	  --dark-text-color: #fff;
+	
+}
+
+
+
+[id="white"] ~ .app [for="white"] {
+
+	background: var(--white-bg-color);
+	color: var(--white-text-color);
+  
+  }
+  
+  [id="dark"] ~ .app [for="dark"] {
+  
+	background: var(--dark-bg-color);
+	color: var(--dark-text-color);
+  
+  }
+
+.horizontal {
+	display: grid;
+	
 }
 #app{
 	width: 1500px;
