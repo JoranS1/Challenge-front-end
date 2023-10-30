@@ -3,6 +3,7 @@
 	padding: 0;
 	font-family: 'Montserrat', sans-serif;
 	box-sizing: border-box;
+	
 }
 :root{
 	  /*WHITE*/
@@ -21,32 +22,94 @@
 
 
 
-[id="white"] ~ .app [for="white"] {
+[id="white"] ~ body [for="white"] {
 
 	background: var(--white-bg-color);
 	color: var(--white-text-color);
   
   }
   
-  [id="dark"] ~ .app [for="dark"] {
+  [id="dark"] ~ body [for="dark"] {
   
 	background: var(--dark-bg-color);
 	color: var(--dark-text-color);
   
   }
 
-.horizontal {
+body{
+	min-height: 100vh;
+	overflow-x: hidden;
+}
+button{
+	width: 250px;
+	padding: 15px;
+}
+.list--all-players{
 	display: grid;
-	
+	grid-template-columns: repeat(auto-fill, repeat(120px, 1fr));
+	gap: 5px;
+	padding-bottom: 10px;
+}
+.list--all-players li{
+	display: flex;
+	flex-wrap: wrap-reverse;
+	gap: 4px;
+}
+.list--all-players li img{
+	width: 100%;
+	object-fit: contain;
+}
+.topContainer{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 }
 #app{
 	width: 1500px;
 }
 #logo {
-	float: left;
+	margin-left: 500px;
 	object-fit: cover;
 	width:  85px;
 }
+
+.namesHolder{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	gap: 10px;
+	padding-bottom: 20px;
+}
+.namesHolder div{
+	width: 100%;
+}
+.imageHolder{
+	display: grid;
+	gap: 10px;
+	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+.imageHolder div{
+	width: 100%;
+}
+.imageHolder div img{
+	width: 100%;
+}
+.timer{ 
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+.timer span{
+	position: relative;
+}
+.timer::before{
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	background-color: darkblue;
+	width: calc(calc (00% / var(--max-time)) * var(--current-time-left));
+}
+
 
 footer{
 	width: 100%;

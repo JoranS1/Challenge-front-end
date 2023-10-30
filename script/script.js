@@ -130,9 +130,9 @@ const genLastGameBoard = ( sortBy = null ) => {
 const header = `
 <div class="w3-container">
 <img src="images/logo-fc-basel.png" id=logo>
-<h1 class=w3-large>The official FC Basel player quiz</h1>
+<h1 class="w3-large">The official FC Basel player quiz</h1>
 <div>
-	<button onclick=homeScreen(); class="w3-button w3-red">Home</button>
+	<button onclick=homeScreen(); class="w3-button w3-red w3-margin-left-32">Home</button>
 </div>
 </div>
 `;
@@ -157,8 +157,11 @@ const showAllThemes = () => {
 	${header}
 	<div class="w3-container">
 		<h3>Color themes choose 1 you like!</h3>
+		<label for="white">White:</label>
 		<input type="radio" id="white" name="colors" value="white" checked>
+		<label for="dark">Dark:</label>
 		<input type="radio" id="dark" name="colors" value="dark">
+		
 		<br>
 		
 		<h3>Layout themes</h3>
@@ -216,7 +219,7 @@ function startGame(){
 		</div>
 	`
 }
-
+//Randomize the player images 
 const randomPlayer = () => {
 	let playerAmount = document.querySelector("input#playerAmount").value;
 	let playerSeconds = document.querySelector("input#playerSeconds").value;
@@ -239,7 +242,7 @@ const genPlayerName = () => {
 var curPlayerAmount;
 var currentPlayer;
 var remainingPlayer;
-
+//Checks if the name selected is correct to the image selected
 const valueCheck = (namePlayer) => {
 	if(remainingPlayer != 0){
 		let checkbox = document.querySelector(`#` + namePlayer);
