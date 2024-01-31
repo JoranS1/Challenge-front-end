@@ -1,10 +1,17 @@
-*{
+/*@tailwind base;
+@tailwind utilties;
+@tailwind components;*/
+
+ *{
 	margin: 0;
 	padding: 0;
 	font-family: 'Montserrat', sans-serif;
+	
 	box-sizing: border-box;
+
 	
 }
+
 :root{
 	  /*WHITE*/
 
@@ -41,8 +48,7 @@ body{
 	overflow-x: hidden;
 }
 button{
-	width: 250px;
-	padding: 15px;
+	width: 100px;
 }
 .list--all-players{
 	display: grid;
@@ -56,8 +62,9 @@ button{
 	gap: 4px;
 }
 .list--all-players li img{
-	width: 100%;
+	width: 50%;
 	object-fit: contain;
+	height: 250px;
 }
 .topContainer{
 	display: grid;
@@ -65,9 +72,10 @@ button{
 }
 #app{
 	width: 1500px;
+	background-image: url("./images/teamfoto.jpg");
 }
 #logo {
-	margin-left: 500px;
+	
 	object-fit: cover;
 	width:  85px;
 }
@@ -81,10 +89,12 @@ button{
 .namesHolder div{
 	width: 100%;
 }
+
 .imageHolder{
 	display: grid;
 	gap: 10px;
 	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+	
 }
 .imageHolder div{
 	width: 100%;
@@ -96,6 +106,8 @@ button{
 	width: 100%;
 	text-align: center;
 	position: relative;
+	font-size: 20px;
+	margin-bottom: 25px;
 }
 .timer span{
 	position: relative;
@@ -112,6 +124,7 @@ button{
 
 
 footer{
+	position: fixed;
 	width: 100%;
 	height: 65px;
 }

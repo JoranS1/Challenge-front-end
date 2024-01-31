@@ -94,7 +94,7 @@ const genSortedBoard = (sortBy) => {
 
 const genLastGameBoard = ( sortBy = null ) => {
 	let items = `
-	<div class="scoreboard">
+	<div class="scoreboard w3-margin-left">
 	<div class = "sortControl">
 	<h4>Sort by</h4>
 	<button onclick="genSortedBoard('oldest')" class="w3-button w3-black">Oldest</button> 
@@ -129,7 +129,7 @@ const genLastGameBoard = ( sortBy = null ) => {
 
 const header = `
 <div class="w3-container">
-<img src="images/logo-fc-basel.png" id=logo>
+<img src="images/logo-fc-basel.png" class="h-[100px]" id=logo>
 <h1 class="w3-large">The official FC Basel player quiz</h1>
 <div>
 	<button onclick=homeScreen(); class="w3-button w3-red w3-margin-left-32">Home</button>
@@ -140,10 +140,10 @@ const header = `
 const head = `
 ${header}
 <div class="w3-container">
-	<div class="w3-margin">
+	<div class="w3-margin-top">
 		<button onclick="showAllPlayers();" class="w3-button w3-red">All players</button>
-		<button onclick="showAllThemes();" class="w3-button w3-yellow">All Themes</button>
-		<button onclick="startGame();" class="w3-button w3-blue">Start Quiz</button>
+		<button onclick="showAllThemes();" class="w3-button w3-yellow w3-margin-left">All Themes</button>
+		<button onclick="startGame();" class="w3-button w3-blue w3-margin-left">Start Quiz</button>
 	</div>
 
 </div>
@@ -177,7 +177,7 @@ const showAllPlayers = () => {
 
 	let item = "";
 	playerArray.forEach((player, number) => {
-		item += `<li>${number + 1}: ${player} <img src="./images/players/${player}.jpg" alt="image for ${player}"></li>`
+		item += `<li>${number + 1}: ${player} <img src="./images/players/${player}.jpg" alt="image for ${player}" class="allPlayerImg"></li>`
 	});
 
 	app.innerHTML += `<ul class="list--all-players">${item}</ul>`
@@ -210,12 +210,12 @@ function startGame(){
 	app.innerHTML = header;
 
 	app.innerHTML += `
-	<div class="game">
+	<div class="game w3-padding-top-32 w3-margin-left">
 		Player you want to guess: <input type="number" id="playerAmount" value="${playerCount}" max="${playerArray.length}" min="0"></input>
 		<br>
 		Time in seconds: <input type="number" min="0" max=${SecondsMax} id="playerSeconds"></input>
 		<br>
-		<button onclick="randomPlayer();">Start</button>
+		<button onclick="randomPlayer();" class="w3-button w3-red w3-margin-top">Start</button>
 		</div>
 	`
 }
@@ -284,7 +284,7 @@ const gameFun = () => {
 
 	remainingPlayer = parseInt(playerCount) - 1;
 
-	let names = "<div class='namesHolder'>";
+	let names = "<div class='namesHolder w3-margin-left'>";
 	let images = "<div class='imageHolder'>";
 
 	playerArr.forEach((val) => {
@@ -304,7 +304,7 @@ const gameFun = () => {
 	names+="</div>";
 	images+="</div>";
 
-	app.innerHTML = `<div class="timer" style = "--max-time: ${SecondsMax}; --current-time-left:${SecondsMax};"><span>${SecondsMax}</span></div>`
+	app.innerHTML = `<div class="timer w3-padding-bottom-16" style = "--max-time: ${SecondsMax}; --current-time-left:${SecondsMax};"><span>${SecondsMax}</span></div>`
 
 	app.innerHTML += `<div class="topContainer">
 	${names}
