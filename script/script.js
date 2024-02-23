@@ -94,11 +94,11 @@ const genSortedBoard = (sortBy) => {
 
 const genLastGameBoard = ( sortBy = null ) => {
 	let items = `
-	<div class="scoreboard w3-margin-left">
+	<div class="scoreboard w3-center">
 	<div class = "sortControl">
 	<h4>Sort by</h4>
 	<button onclick="genSortedBoard('oldest')" class="w3-button w3-black">Oldest</button> 
-	<button onclick="genSortedBoard('newest')" class="w3-button w3-pink">newest</button> 
+	<button onclick="genSortedBoard('newest')" class="w3-button w3-pink">Newest</button> 
 	</div>
 	<h3>Scoreboard</h3>
 	`;
@@ -128,11 +128,11 @@ const genLastGameBoard = ( sortBy = null ) => {
 }
 
 const header = `
-<div class="w3-container">
+<div class="w3-container header w3-center">
 <img src="images/logo-fc-basel.png" class="h-[100px]" id=logo>
 <h1 class="w3-large">The official FC Basel player quiz</h1>
 <div>
-	<button onclick=homeScreen(); class="w3-button w3-red w3-margin-left-32">Home</button>
+	<button onclick=homeScreen(); class="w3-button w3-red w3-margin-bottom">Home</button>
 </div>
 </div>
 `;
@@ -140,7 +140,7 @@ const header = `
 const head = `
 ${header}
 <div class="w3-container">
-	<div class="w3-margin-top">
+	<div class="w3-margin-top w3-center">
 		<button onclick="showAllPlayers();" class="w3-button w3-red">All players</button>
 		<button onclick="showAllThemes();" class="w3-button w3-yellow w3-margin-left">All Themes</button>
 		<button onclick="startGame();" class="w3-button w3-blue w3-margin-left">Start Quiz</button>
@@ -210,7 +210,7 @@ function startGame(){
 	app.innerHTML = header;
 
 	app.innerHTML += `
-	<div class="game w3-padding-top-32 w3-margin-left">
+	<div class="game w3-padding-top-32 w3-center">
 		Player you want to guess: <input type="number" id="playerAmount" value="${playerCount}" max="${playerArray.length}" min="0"></input>
 		<br>
 		Time in seconds: <input type="number" min="0" max=${SecondsMax} id="playerSeconds"></input>
@@ -338,7 +338,7 @@ const finishedGame = ( interval, secondsLeft) => {
 	clearInterval(interval);
 	app.innerHTML = header;
 	app.innerHTML += `
-	<ul>
+	<ul class="w3-margin-left">
 		<li>Amount of questions: ${playerCount}</li>
 		<li>Starting seconds: ${SecondsMax}</li>
 		<li>Remaining seconds: ${secondsLeft}</li>
